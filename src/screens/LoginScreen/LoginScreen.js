@@ -39,6 +39,10 @@ export default function LoginScreen({navigation}) {
                 alert(error)
             })
     }
+    
+    const onGoogleLogin = () => {
+        
+    }
 
     return (
         <View style={styles.container}>

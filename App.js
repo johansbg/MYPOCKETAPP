@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'react-native-elements'
-import { LoginScreen, HomeScreen, RegistrationScreen, IngresosScreen } from './src/screens'
+import { LoginScreen, HomeScreen, RegistrationScreen, IngresosScreen, DeudasScreen, PlanesScreen} from './src/screens'
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -72,8 +72,8 @@ export default function App() {
   function DeudasStackNavigation() {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Home" options={{ title: 'My home' }}>
-          {props => <HomeScreen {...props} onPress={signOut} extraData={user}/>}
+        <Stack.Screen name="Gastos" options={{ title: 'My Deudas' }}>
+          {props => <DeudasScreen {...props} onPress={signOut} extraData={user}/>}
         </Stack.Screen>
       </Stack.Navigator>
      );
@@ -81,8 +81,8 @@ export default function App() {
   function PlanesStackNavigation() {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Home" options={{ title: 'My home' }}>
-          {props => <HomeScreen {...props} onPress={signOut} extraData={user}/>}
+        <Stack.Screen name="Planes" options={{ title: 'My Planes' }}>
+          {props => <PlanesScreen {...props} onPress={signOut} extraData={user}/>}
         </Stack.Screen>
       </Stack.Navigator>
      );
@@ -92,7 +92,7 @@ export default function App() {
         { user ? (
           <Tab.Navigator initialRouteName={"Home"} 
                 screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
+                tabBarIcon: ({ color, size }) => {
                   let iconName;
 
                   if (route.name === 'Home') {
@@ -104,8 +104,6 @@ export default function App() {
                   } else if (route.name === 'Planes') {
                     iconName = 'ios-clipboard'
                   }
-
-                  // You can return any component that you like here!
                   return <Icon name={iconName} type='ionicon' size={size} color={color} />;
                 },
               })}

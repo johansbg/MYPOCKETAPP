@@ -1,10 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
     formContainer: {
         flexDirection: 'row',
         height: 80,
@@ -39,17 +35,24 @@ export default StyleSheet.create({
         color: 'white',
         fontSize: 16
     },
-    listContainer: {
-        marginTop: 20,
-        padding: 20,
-    },
     entityContainer: {
-        marginTop: 16,
-        borderBottomColor: '#cccccc',
-        borderBottomWidth: 1,
-        paddingBottom: 16
+        marginTop: 10,
+        borderTopColor: '#cccccc',
+        borderTopWidth: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     entityText: {
+        padding: 10,
+        fontSize: 15,
+        color: '#333333'
+    },
+    titleText: {
+        fontWeight: 'bold',
+        padding: 10,
         fontSize: 20,
         color: '#333333'
     }

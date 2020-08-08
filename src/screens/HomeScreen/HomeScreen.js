@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Icon, Card } from 'react-native-elements'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 
@@ -57,15 +58,19 @@ export default function HomeScreen(props) {
     const renderEntity = ({item, index}) => {
         return (
             <View style={styles.entityContainer}>
+                <Icon name='rowing' />
                 <Text style={styles.entityText}>
-                    {index}. {item.text}
+                    {item.text} 
+                </Text>
+                <Text style={styles.entityText}>
+                    $300.000 
                 </Text>
             </View>
         )
     }
 
     return (
-        <View style={styles.container}>
+        <View>
             <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
@@ -84,14 +89,17 @@ export default function HomeScreen(props) {
                 </TouchableOpacity>
             </View>
             { entities && (
-                <View style={styles.listContainer}>
+                <Card containerStyle={{padding: 0}}>
+                    <Text style={styles.titleText}>
+                        INGRESOS
+                    </Text>
                     <FlatList
                         data={entities}
                         renderItem={renderEntity}
                         keyExtractor={(item) => item.id}
                         removeClippedSubviews={true}
                     />
-                </View>
+                </Card>
             )}
         </View>
     )

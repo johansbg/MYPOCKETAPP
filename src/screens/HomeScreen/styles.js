@@ -24,16 +24,21 @@ export default StyleSheet.create({
         marginRight: 5
     },
     button: {
-        height: 47,
-        borderRadius: 5,
+        height: 30,
+        borderRadius: 10,
+        margin:10,
         backgroundColor: '#788eec',
-        width: 80,
+        width: 100,
         alignItems: "center",
         justifyContent: 'center'
     },
     buttonText: {
         color: 'white',
-        fontSize: 16
+        fontSize: 15
+    },
+    buttonTextAdd: {
+        color: 'white',
+        fontSize: 20
     },
     entityContainer: {
         marginTop: 10,
@@ -55,5 +60,16 @@ export default StyleSheet.create({
         padding: 10,
         fontSize: 20,
         color: '#333333'
-    }
+    },
+    chartTitleText: {
+        fontWeight: 'bold',
+        padding: 10,
+        fontSize: 15,
+        color: '#333333'
+    },
+    chartContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
 })

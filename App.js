@@ -4,6 +4,7 @@ import { firebase } from './src/firebase/config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Icon } from 'react-native-elements'
 import { LoginScreen, HomeScreen, RegistrationScreen, IngresosScreen } from './src/screens'
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
@@ -89,13 +90,42 @@ export default function App() {
   return (
     <NavigationContainer>
         { user ? (
-          <Tab.Navigator initialRouteName={"Home"} >
-            <Tab.Screen
+          <Tab.Navigator initialRouteName={"Home"} 
+                screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName;
+
+                  if (route.name === 'Home') {
+                    iconName = 'ios-home'
+                  } else if (route.name === 'Ingresos') {
+                    iconName = 'ios-card' 
+                  } else if (route.name === 'Gastos') {
+                    iconName ='ios-cart'
+                  } else if (route.name === 'Planes') {
+                    iconName = 'ios-clipboard'
+                  }
+
+                  // You can return any component that you like here!
+                  return <Icon name={iconName} type='ionicon' size={size} color={color} />;
+                },
+              })}
+              tabBarOptions={{
+                activeTintColor: '#788eec',
+                inactiveTintColor: 'gray',
+              }}
+            >
+              <Tab.Screen
               name="Home"
               component={HomeStackNavigation} />
               <Tab.Screen
               name="Ingresos"
               component={IngresosStackNavigation} />
+              <Tab.Screen
+              name="Gastos"
+              component={DeudasStackNavigation} />
+              <Tab.Screen
+              name="Planes"
+              component={PlanesStackNavigation} />
           </Tab.Navigator>
         ) : (
           <>

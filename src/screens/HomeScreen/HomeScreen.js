@@ -100,6 +100,7 @@ export default function HomeScreen(props) {
         propsForDots: { r: '6', strokeWidth: '2', stroke: '#788eec', },
         propsForLabels: { fontSize: 9, fontWeight: 'bold',}
     };
+    //Decidir entre scrollView o list
     return (
         <SafeAreaView >
             <Card containerStyle={{padding: 0}}>

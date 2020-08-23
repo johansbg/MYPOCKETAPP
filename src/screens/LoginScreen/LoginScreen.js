@@ -40,10 +40,6 @@ export default function LoginScreen({navigation}) {
             })
     }
     
-    const onGoogleLogin = () => {
-        
-    }
-
     return (
         <View style={styles.container}>
             <KeyboardAwareScrollView

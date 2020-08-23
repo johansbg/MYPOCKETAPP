@@ -1,98 +1,130 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, SafeAreaView, ScrollView, Dimensions } from 'react-native'
+import { Icon, Card, Button } from 'react-native-elements'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
+import { ProgressBar, Colors } from 'react-native-paper';
 
 export default function HomeScreen(props) {
 
-    const [entityText, setEntityText] = useState('')
-    const [entities, setEntities] = useState([])
-
-    const entityRef = firebase.firestore().collection('entities')
-    const userID = props.extraData.id
-    useEffect(() => {
-        entityRef
-            .where('authorID', '==', userID)
-            .orderBy('createdAt', 'desc')
-            .onSnapshot(
-                querySnapshot => {
-                    const newEntities = []
-                    querySnapshot.forEach(doc => {
-                        const entity = doc.data()
-                        entity.id = doc.id
-                        newEntities.push(entity)
-                    });
-                    setEntities(newEntities)
-                },
-                error => {
-                    console.log(error)
-                }
-            )
-    }, [])
-
-    const signOut = () => {
-        props.onPress()
-    } 
-
-    const onAddButtonPress = () => {
-        if (entityText && entityText.length > 0) {
-            const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-            const data = {
-                text: entityText,
-                authorID: userID,
-                createdAt: timestamp,
-            };
-            entityRef
-                .add(data)
-                .then(_doc => {
-                    setEntityText('')
-                    Keyboard.dismiss()
-                })
-                .catch((error) => {
-                    alert(error)
-                });
-        }
-    }
-
-    const renderEntity = ({item, index}) => {
-        return (
-            <View style={styles.entityContainer}>
-                <Text style={styles.entityText}>
-                    {index}. {item.text}
-                </Text>
-            </View>
-        )
-    }
+    const screenWidth = Dimensions.get("window").width;
 
     return (
-        <View style={styles.container}>
-            <View style={styles.formContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Add new entity'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEntityText(text)}
-                    value={entityText}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TouchableOpacity style={styles.button} onPress={onAddButtonPress}>
-                    <Text style={styles.buttonText}>Add</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={signOut}>
-                    <Text style={styles.buttonText}>Logout</Text>
-                </TouchableOpacity>
-            </View>
-            { entities && (
-                <View style={styles.listContainer}>
-                    <FlatList
-                        data={entities}
-                        renderItem={renderEntity}
-                        keyExtractor={(item) => item.id}
-                        removeClippedSubviews={true}
-                    />
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <View style={styles.formContainer}>
+                    <TouchableOpacity style={{
+                        height: 50,
+                        borderRadius: 10,
+                        backgroundColor: '#788eec',
+                        width: screenWidth-50,
+                        alignItems: "center",
+                        justifyContent: 'center'
+                        }}onPress={()=>{setModalVisible(true);}}>
+                        <Text style={styles.buttonTextAdd}>Agregar Nuevo Plan</Text>
+                    </TouchableOpacity>
                 </View>
-            )}
-        </View>
+                <Card
+                    title='HELLO WORLD'
+                    imageStyle = {
+                        {
+                            marginLeft:120,
+                            width:100,
+                        }}
+                    image={require('../../../assets/icon.png')}>
+                    <Text style={{marginBottom: 10}}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                    <Text style={{marginBottom: 10}}>
+                        Progreso: 10%
+                    </Text>
+                    <ProgressBar style={{height: 20}} progress={0.1} color={Colors.red800} />
+                    <Button
+                        icon={<Icon name='code' color='#ffffff' />}
+                        buttonStyle={{borderRadius: 0, marginTop:5}}
+                        title='VIEW NOW' />
+                </Card>
+                <Card
+                    title='HELLO WORLD'
+                    imageStyle = {
+                        {
+                            marginLeft:120,
+                            width:100,
+                        }}
+                    image={require('../../../assets/icon.png')}>
+                    <Text style={{marginBottom: 10}}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                    <Text style={{marginBottom: 10}}>
+                        Progreso: 10%
+                    </Text>
+                    <ProgressBar style={{height: 20}} progress={0.1} color={Colors.red800} />
+                    <Button
+                        icon={<Icon name='code' color='#ffffff' />}
+                        buttonStyle={{borderRadius: 0, marginTop:5}}
+                        title='VIEW NOW' />
+                </Card>
+                <Card
+                    title='HELLO WORLD'
+                    imageStyle = {
+                        {
+                            marginLeft:120,
+                            width:100,
+                        }}
+                    image={require('../../../assets/icon.png')}>
+                    <Text style={{marginBottom: 10}}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                    <Text style={{marginBottom: 10}}>
+                        Progreso: 10%
+                    </Text>
+                    <ProgressBar style={{height: 20}} progress={0.1} color={Colors.red800} />
+                    <Button
+                        icon={<Icon name='code' color='#ffffff' />}
+                        buttonStyle={{borderRadius: 0, marginTop:5}}
+                        title='VIEW NOW' />
+                </Card>
+                <Card
+                    title='HELLO WORLD'
+                    imageStyle = {
+                        {
+                            marginLeft:120,
+                            width:100,
+                        }}
+                    image={require('../../../assets/icon.png')}>
+                    <Text style={{marginBottom: 10}}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                    <Text style={{marginBottom: 10}}>
+                        Progreso: 10%
+                    </Text>
+                    <ProgressBar style={{height: 20}} progress={0.1} color={Colors.red800} />
+                    <Button
+                        icon={<Icon name='code' color='#ffffff' />}
+                        buttonStyle={{borderRadius: 0, marginTop:5}}
+                        title='VIEW NOW' />
+                </Card>
+                <Card
+                    title='HELLO WORLD'
+                    imageStyle = {
+                        {
+                            marginLeft:120,
+                            width:100,
+                        }}
+                    image={require('../../../assets/icon.png')}>
+                    <Text style={{marginBottom: 10}}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                    <Text style={{marginBottom: 10}}>
+                        Progreso: 10%
+                    </Text>
+                    <ProgressBar style={{height: 20}} progress={0.1} color={Colors.red800} />
+                    <Button
+                        icon={<Icon name='code' color='#ffffff' />}
+                        buttonStyle={{borderRadius: 0, marginTop:5}}
+                        title='VIEW NOW' />
+                </Card>
+            </ScrollView>
+        </SafeAreaView>
     )
 }

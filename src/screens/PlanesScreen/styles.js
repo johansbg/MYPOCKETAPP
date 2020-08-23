@@ -8,9 +8,6 @@ export default StyleSheet.create({
     formContainer: {
         flexDirection: 'row',
         height: 80,
-        marginTop: 40,
-        marginBottom: 20,
-        flex: 1,
         paddingTop: 10,
         paddingBottom: 10,
         paddingLeft: 30,
@@ -52,5 +49,13 @@ export default StyleSheet.create({
     entityText: {
         fontSize: 20,
         color: '#333333'
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 15
+    },
+    buttonTextAdd: {
+        color: 'white',
+        fontSize: 20
     }
 })
